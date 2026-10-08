@@ -1,33 +1,122 @@
 # SmartSupport CRM
 
-SmartSupport CRM is a Salesforce-based customer support and complaint management system designed for a final-year B.Tech AI/ML student project.
+## Project Title
+Smart Customer Support & Complaint Management System Using Salesforce
 
 ## Overview
-This repository will contain:
-- Salesforce DX project structure for case, account, contact, and support automation
-- Lightning Experience and Lightning Web Components
-- Flow-based automation for priority, assignment, SLA, and escalation
-- Apex service classes only where they add real business value
-- Python AI/ML demo service for complaint classification
-- Documentation for architecture, setup, testing, and viva preparation
+SmartSupport CRM is a Salesforce-based support and complaint management system designed for a final-year B.Tech AI/ML project. The project demonstrates how companies can manage customer complaints, assign support teams, automate priority rules, handle escalation, track SLA, and use AI-based classification for complaint handling.
 
-## Current Phase
-This repository is currently in Phase 1 setup.
-We are creating the project skeleton and preparing the foundation for later Salesforce and AI development.
+## Problem Statement
+Organizations often receive large numbers of customer complaints across categories such as hardware, software, billing, account, refund, and shipping. Without a proper workflow, these complaints may remain unresolved, create SLA breaches, and reduce customer satisfaction.
 
-## Project Goal
-The system will help organizations manage customer complaints by:
-- storing customer and contact data
-- creating and tracking support cases
-- automatically setting priority and assigning support teams
-- escalating critical complaints
-- tracking resolution and SLA compliance
-- using a Python ML service for complaint category and priority prediction
+## Objectives
+- Store customer and contact information
+- Manage support cases efficiently
+- Automate case priority rules
+- Route cases to correct support queues
+- Escalate critical complaints
+- Track resolution and SLA compliance
+- Use AI-based classification for category and priority prediction
+- Present reports and dashboards for management visibility
 
-## Important Notes
-- This project is a demo/prototype intended for college projects and portfolio use.
-- No Salesforce credentials or secrets are included in the repository.
-- No deployment or org authentication is being claimed at this stage.
+## Features
+- Account and Contact management
+- Case tracking using Salesforce Case object
+- Priority automation using Flow
+- Assignment routing using queues
+- Critical escalation logic
+- Validation rules for closure and critical cases
+- SLA status tracking
+- LWC dashboard and quick view
+- Python AI service for complaint prediction
+- Synthetic demo dataset for ML model training
 
-## Next Steps
-Phase 2 will focus on the Salesforce data model and manual setup steps.
+## Architecture
+The solution combines Salesforce and Python:
+- Salesforce stores customers, contacts, and cases
+- Flow automates business logic
+- Apex is used only where required
+- LWC provides dashboard and quick view experience
+- FastAPI service handles complaint prediction using a demo ML model
+
+## Technology Stack
+- Salesforce Lightning Experience
+- Salesforce CRM Objects
+- Flow
+- Apex
+- LWC
+- Python
+- FastAPI
+- Pandas
+- NumPy
+- scikit-learn
+- TF-IDF
+- Logistic Regression
+
+## Salesforce Setup
+1. Create or open a Salesforce Developer Edition org
+2. Deploy the metadata from the repo
+3. Verify custom fields and queues
+4. Assign permission sets to users
+5. Configure page layouts and Lightning pages
+6. Activate the required flows
+
+## AI Setup
+1. Create a Python virtual environment
+2. Install dependencies from `ai-service/requirements.txt`
+3. Run the FastAPI app locally
+4. Test the `/predict` endpoint using sample complaint text
+
+## Running Instructions
+### Salesforce
+```bash
+sfdx project deploy start
+```
+
+### Python AI service
+```bash
+cd ai-service
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn app:app --reload
+```
+
+### Prediction request
+```bash
+curl -X POST http://127.0.0.1:8000/predict \
+  -H "Content-Type: application/json" \
+  -d '{"description":"My laptop is not charging"}'
+```
+
+## Testing
+The project covers:
+- Premium + Hardware priority rules
+- Enterprise + Hardware escalation logic
+- Billing priority rules
+- Support assignment routing
+- Case closure validation
+- AI prediction response structure
+- LWC rendering
+
+## Screenshots
+Add screenshots here after deployment and testing in Salesforce.
+
+## Limitations
+- AI model is demonstration-level only
+- Synthetic dataset is used for training demonstration
+- Real org setup is required for deployment and testing
+- Salesforce authentication and org access must be configured manually
+
+## Future Enhancements
+- Agentforce
+- Knowledge Base
+- Sentiment Analysis
+- Multilingual Complaint Classification
+- Email Integration
+- WhatsApp Integration
+- Advanced ML Models
+- Customer Self-Service Portal
+
+## Conclusion
+SmartSupport CRM demonstrates how Salesforce can be used to create a modern complaint and support management system with AI-powered classification. It is suitable for a B.Tech final-year project, college viva, GitHub portfolio, and career interviews.
