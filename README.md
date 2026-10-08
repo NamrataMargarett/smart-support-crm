@@ -99,8 +99,6 @@ The project covers:
 - AI prediction response structure
 - LWC rendering
 
-## Screenshots
-Add screenshots here after deployment and testing in Salesforce.
 
 ## Limitations
 - AI model is demonstration-level only
