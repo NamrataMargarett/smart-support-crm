@@ -1,0 +1,38 @@
+.dashboard-grid {
+    gap: 0.5rem;
+}
+
+.metric-box {
+    border-radius: 0.75rem;
+    padding: 1rem;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.metric-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+    opacity: 0.9;
+}
+
+.metric-value {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.total { background: linear-gradient(135deg, #1b96ff, #0a81d8); }
+.open { background: linear-gradient(135deg, #3bb273, #2a8d5d); }
+.critical { background: linear-gradient(135deg, #d93a3a, #b82a2a); }
+.escalated { background: linear-gradient(135deg, #f5a623, #d98f00); }
+.resolved { background: linear-gradient(135deg, #6c4ee5, #5639d1); }
+.closed { background: linear-gradient(135deg, #4a4a4a, #2e2e2e); }
+
+@media (max-width: 640px) {
+    .metric-value {
+        font-size: 1.5rem;
+    }
+}

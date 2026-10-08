@@ -1,0 +1,42 @@
+<template>
+    <lightning-card title="SmartSupport Case Dashboard" icon-name="standard:case">
+        <div class="slds-grid slds-wrap slds-p-around_medium dashboard-grid">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_x-small">
+                <div class="metric-box total">
+                    <span class="metric-label">Total Cases</span>
+                    <span class="metric-value">{metrics.totalCases}</span>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_x-small">
+                <div class="metric-box open">
+                    <span class="metric-label">Open Cases</span>
+                    <span class="metric-value">{metrics.openCases}</span>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_x-small">
+                <div class="metric-box critical">
+                    <span class="metric-label">Critical Cases</span>
+                    <span class="metric-value">{metrics.criticalCases}</span>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_x-small">
+                <div class="metric-box escalated">
+                    <span class="metric-label">Escalated Cases</span>
+                    <span class="metric-value">{metrics.escalatedCases}</span>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_x-small">
+                <div class="metric-box resolved">
+                    <span class="metric-label">Resolved Cases</span>
+                    <span class="metric-value">{metrics.resolvedCases}</span>
+                </div>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-p-around_x-small">
+                <div class="metric-box closed">
+                    <span class="metric-label">Closed Cases</span>
+                    <span class="metric-value">{metrics.closedCases}</span>
+                </div>
+            </div>
+        </div>
+    </lightning-card>
+</template>
