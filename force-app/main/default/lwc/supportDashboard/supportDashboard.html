@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="SmartSupport Dashboard" icon-name="standard:dashboard">
+        <div class="slds-p-around_medium">
+            <div class="slds-grid slds-wrap slds-gutters">
+                <template for:each={metrics} for:item="metric">
+                    <div key={metric.label} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4 slds-p-bottom_small">
+                        <div class="metric-box">
+                            <div class="metric-label">{metric.label}</div>
+                            <div class="metric-value">{metric.value}</div>
+                            <div class="metric-trend">{metric.trend}</div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </lightning-card>
+</template>

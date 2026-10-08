@@ -1,0 +1,23 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Deploy Salesforce Metadata",
+      "type": "shell",
+      "command": "sfdx force:source:deploy -p force-app",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run AI Service",
+      "type": "shell",
+      "command": "cd ai-service && python -m uvicorn app:app --reload",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+.metric-box {
+    background: linear-gradient(135deg, #0b2240 0%, #123d6a 100%);
+    border-radius: 8px;
+    padding: 1rem;
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.metric-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.metric-value {
+    margin-top: 0.5rem;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.metric-trend {
+    margin-top: 0.25rem;
+    font-size: 0.75rem;
+    color: #b8d6ff;
+}

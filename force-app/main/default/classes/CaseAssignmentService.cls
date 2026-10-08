@@ -1,65 +1,44 @@
 public with sharing class CaseAssignmentService {
-    public static void assignCaseQueue(Set<Id> caseIds) {
-        if (caseIds == null || caseIds.isEmpty()) {
-            return;
-        }
-
-        List<Case> casesToUpdate = [
-            SELECT Id, Category__c, OwnerId
-            FROM Case
-            WHERE Id IN :caseIds
-        ];
-
-        Map<String, Id> queueMap = getQueueMap();
-
-        for (Case c : casesToUpdate) {
-            String targetQueue = resolveQueueName(c.Category__c);
-            if (queueMap.containsKey(targetQueue)) {
-                c.OwnerId = queueMap.get(targetQueue);
-            }
-        }
-
-        if (!casesToUpdate.isEmpty()) {
-            update casesToUpdate;
-        }
-    }
-
-    public static String resolveQueueName(String category) {
+    public static String assignCaseToQueue(String category, String accountSegment) {
         if (String.isBlank(category)) {
             return 'General Support';
         }
 
-        switch on category {
-            when 'Hardware', 'Software' {
-                return 'Technical Support';
-            }
-            when 'Billing', 'Refund' {
-                return 'Finance Support';
-            }
-            when 'Account' {
-                return 'Account Support';
-            }
-            when 'Shipping' {
-                return 'Logistics Support';
-            }
-            when else {
-                return 'General Support';
-            }
+        String normalizedCategory = category.trim();
+
+        if (normalizedCategory == 'Hardware' || normalizedCategory == 'Software') {
+            return 'Technical Support';
         }
+        if (normalizedCategory == 'Billing' || normalizedCategory == 'Refund') {
+            return 'Billing Support';
+        }
+        if (normalizedCategory == 'Account') {
+            return 'Customer Support';
+        }
+        if (normalizedCategory == 'Shipping') {
+            return 'Logistics Support';
+        }
+
+        return 'General Support';
     }
 
-    private static Map<String, Id> getQueueMap() {
-        Map<String, Id> queueMap = new Map<String, Id>();
-
-        for (Group g : [
-            SELECT Id, DeveloperName
-            FROM Group
-            WHERE Type = 'Queue'
-            AND DeveloperName IN ('Technical_Support', 'Finance_Support', 'Account_Support', 'Logistics_Support', 'General_Support')
-        ]) {
-            queueMap.put(g.DeveloperName, g.Id);
+    public static String determinePriority(String category, String severity) {
+        if (String.isBlank(severity)) {
+            severity = 'Medium';
         }
 
-        return queueMap;
+        if (severity == 'Critical' || category == 'Hardware') {
+            return 'Critical';
+        }
+
+        if (severity == 'High' || category == 'Billing') {
+            return 'High';
+        }
+
+        if (severity == 'Medium') {
+            return 'Medium';
+        }
+
+        return 'Low';
     }
 }

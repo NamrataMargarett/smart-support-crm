@@ -1,25 +1,20 @@
 @IsTest
-public with sharing class CaseAssignmentServiceTest {
+public class CaseAssignmentServiceTest {
     @IsTest
-    static void testHardwareAssignment() {
-        Account acc = new Account(Name = 'Test Customer');
-        insert acc;
-
-        Case c = new Case(
-            Subject = 'Hardware Problem',
-            Category__c = 'Hardware',
-            AccountId = acc.Id,
-            Status = 'New',
-            Origin = 'Email'
-        );
-
-        insert c;
-
+    static void testAssignCaseToQueue() {
         Test.startTest();
-        CaseAssignmentService.assignCaseQueue(new Set<Id>{ c.Id });
+        String queueName = CaseAssignmentService.assignCaseToQueue('Hardware', 'Enterprise');
         Test.stopTest();
 
-        Case updatedCase = [SELECT OwnerId FROM Case WHERE Id = :c.Id];
-        System.assertNotEquals(null, updatedCase.OwnerId);
+        System.assertEquals('Technical Support', queueName);
+    }
+
+    @IsTest
+    static void testDeterminePriority() {
+        Test.startTest();
+        String priority = CaseAssignmentService.determinePriority('Billing', 'High');
+        Test.stopTest();
+
+        System.assertEquals('High', priority);
     }
 }

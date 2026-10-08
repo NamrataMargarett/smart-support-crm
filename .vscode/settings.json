@@ -1,0 +1,14 @@
+{
+  "editor.formatOnSave": true,
+  "files.trimTrailingWhitespace": true,
+  "python.defaultInterpreterPath": "${workspaceFolder}/ai-service/.venv/bin/python",
+  "python.analysis.typeCheckingMode": "basic",
+  "python.testing.pytestEnabled": true,
+  "salesforcedx-vscode-core.showCLICompatibilityInfo": false,
+  "salesforcedx-vscode-core.retrieve-test-code-coverage": true,
+  "search.exclude": {
+    "**/.venv": true,
+    "**/.sfdx": true,
+    "**/.sf": true
+  }
+}
