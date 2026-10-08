@@ -1,0 +1,91 @@
+<template>
+    <div class="dashboard-wrapper">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">SmartSupport CRM Dashboard</h1>
+            <span class="filter-tag">This Month</span>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="metric-card primary">
+                <span class="metric-label">Total Cases</span>
+                <span class="metric-value">{metrics.totalCases}</span>
+                <span class="metric-trend positive">{caseTrend}</span>
+            </div>
+
+            <div class="metric-card success">
+                <span class="metric-label">Resolved</span>
+                <span class="metric-value">{metrics.resolvedCases}</span>
+                <span class="metric-trend positive">{resolvedTrend}</span>
+            </div>
+
+            <div class="metric-card warning">
+                <span class="metric-label">Open Cases</span>
+                <span class="metric-value">{metrics.openCases}</span>
+                <span class="metric-trend negative">{openTrend}</span>
+            </div>
+
+            <div class="metric-card danger">
+                <span class="metric-label">Critical</span>
+                <span class="metric-value">{metrics.criticalCases}</span>
+                <span class="metric-trend negative">Needs escalation</span>
+            </div>
+
+            <div class="metric-card info">
+                <span class="metric-label">Escalated</span>
+                <span class="metric-value">{metrics.escalatedCases}</span>
+                <span class="metric-trend positive">Active routing</span>
+            </div>
+
+            <div class="metric-card purple">
+                <span class="metric-label">Closed</span>
+                <span class="metric-value">{metrics.closedCases}</span>
+                <span class="metric-trend positive">+5.3% completion</span>
+            </div>
+        </div>
+
+        <div class="card-panel" style="margin-top:1.5rem;">
+            <div class="panel-header">
+                <span class="panel-title">Case Distribution by Category</span>
+                <span class="filter-tag">Weekly</span>
+            </div>
+
+            <div class="bar-chart">
+                <div class="bar" style="height: 65%;">
+                    <span class="bar-label">Hardware</span>
+                </div>
+                <div class="bar" style="height: 80%;">
+                    <span class="bar-label">Software</span>
+                </div>
+                <div class="bar" style="height: 55%;">
+                    <span class="bar-label">Billing</span>
+                </div>
+                <div class="bar" style="height: 90%;">
+                    <span class="bar-label">Shipping</span>
+                </div>
+                <div class="bar" style="height: 70%;">
+                    <span class="bar-label">Account</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="summary-section">
+            <div class="card-panel">
+                <span class="panel-title">Support Team Performance</span>
+                <div class="summary-row">
+                    <div class="summary-box">
+                        <span class="small-label">Avg Resolution Time</span>
+                        <span class="small-value">2.4 hrs</span>
+                    </div>
+                    <div class="summary-box">
+                        <span class="small-label">Customer Satisfaction</span>
+                        <span class="small-value">4.8/5</span>
+                    </div>
+                    <div class="summary-box">
+                        <span class="small-label">SLA Compliance</span>
+                        <span class="small-value">98.2%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartSupport CRM Dashboard - Demo</title>
+    <style>
+        :root {
+            --bg: #f4f7fb;
+            --surface: #ffffff;
+            --surface-2: #eef4ff;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --primary: #2563eb;
+            --secondary: #7c3aed;
+            --success: #16a34a;
+            --warning: #f59e0b;
+            --danger: #dc2626;
+            --info: #0ea5e9;
+            --shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+            --radius-lg: 18px;
+            --radius-md: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .dashboard-wrapper {
+            background: var(--bg);
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .filter-tag {
+            background: var(--surface-2);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #ffffff, #f8fbff);
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(15, 23, 42, 0.15);
+        }
+
+        .metric-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--primary);
+        }
+
+        .metric-label {
+            display: block;
+            color: var(--muted);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .metric-value {
+            display: block;
+            margin-top: 1rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .metric-trend {
+            margin-top: 0.7rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .metric-trend.positive { color: var(--success); }
+        .metric-trend.negative { color: var(--danger); }
+
+        .metric-card.primary::before { background: var(--primary); }
+        .metric-card.success::before { background: var(--success); }
+        .metric-card.warning::before { background: var(--warning); }
+        .metric-card.danger::before { background: var(--danger); }
+        .metric-card.info::before { background: var(--info); }
+        .metric-card.purple::before { background: var(--secondary); }
+
+        .card-panel {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .panel-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 200px;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .bar {
+            flex: 1;
+            border-radius: 12px 12px 0 0;
+            background: linear-gradient(180deg, var(--primary), #7dd3fc);
+            min-height: 40px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .bar:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        .bar:nth-child(2) { background: linear-gradient(180deg, var(--success), #86efac); }
+        .bar:nth-child(3) { background: linear-gradient(180deg, var(--warning), #fcd34d); }
+        .bar:nth-child(4) { background: linear-gradient(180deg, var(--danger), #fca5a5); }
+        .bar:nth-child(5) { background: linear-gradient(180deg, var(--secondary), #c4b5fd); }
+
+        .bar-label {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -30px;
+            font-size: 0.8rem;
+            color: var(--muted);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .summary-section {
+            margin-top: 2rem;
+        }
+
+        .summary-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .summary-box {
+            background: #f9fafb;
+            border-radius: var(--radius-md);
+            padding: 1.2rem;
+            border: 1px solid rgba(148, 163, 184, 0.16);
+        }
+
+        .small-label {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+        }
+
+        .small-value {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        @media (max-width: 1200px) {
+            .dashboard-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-wrapper {
+                padding: 1rem;
+            }
+
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .dashboard-title {
+                font-size: 1.5rem;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .metric-value {
+                font-size: 2rem;
+            }
+
+            .summary-row {
+                grid-template-columns: 1fr;
+            }
+
+            .bar-chart {
+                height: 150px;
+                gap: 0.5rem;
+            }
+
+            .bar-label {
+                font-size: 0.7rem;
+                bottom: -25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">SmartSupport CRM Dashboard</h1>
+            <span class="filter-tag">This Month</span>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="metric-card primary">
+                <span class="metric-label">Total Cases</span>
+                <span class="metric-value">128</span>
+                <span class="metric-trend positive">+12.5% vs last month</span>
+            </div>
+
+            <div class="metric-card success">
+                <span class="metric-label">Resolved</span>
+                <span class="metric-value">63</span>
+                <span class="metric-trend positive">+9.2% uplift</span>
+            </div>
+
+            <div class="metric-card warning">
+                <span class="metric-label">Open Cases</span>
+                <span class="metric-value">42</span>
+                <span class="metric-trend negative">-4.1% this week</span>
+            </div>
+
+            <div class="metric-card danger">
+                <span class="metric-label">Critical</span>
+                <span class="metric-value">7</span>
+                <span class="metric-trend negative">Needs escalation</span>
+            </div>
+
+            <div class="metric-card info">
+                <span class="metric-label">Escalated</span>
+                <span class="metric-value">11</span>
+                <span class="metric-trend positive">Active routing</span>
+            </div>
+
+            <div class="metric-card purple">
+                <span class="metric-label">Closed</span>
+                <span class="metric-value">23</span>
+                <span class="metric-trend positive">+5.3% completion</span>
+            </div>
+        </div>
+
+        <div class="card-panel">
+            <div class="panel-header">
+                <span class="panel-title">Case Distribution by Category</span>
+                <span class="filter-tag">Weekly</span>
+            </div>
+
+            <div class="bar-chart">
+                <div class="bar" style="height: 65%;">
+                    <span class="bar-label">Hardware</span>
+                </div>
+                <div class="bar" style="height: 80%;">
+                    <span class="bar-label">Software</span>
+                </div>
+                <div class="bar" style="height: 55%;">
+                    <span class="bar-label">Billing</span>
+                </div>
+                <div class="bar" style="height: 90%;">
+                    <span class="bar-label">Shipping</span>
+                </div>
+                <div class="bar" style="height: 70%;">
+                    <span class="bar-label">Account</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="summary-section">
+            <div class="card-panel">
+                <span class="panel-title">Support Team Performance</span>
+                <div class="summary-row">
+                    <div class="summary-box">
+                        <span class="small-label">Avg Resolution Time</span>
+                        <span class="small-value">2.4 hrs</span>
+                    </div>
+                    <div class="summary-box">
+                        <span class="small-label">Customer Satisfaction</span>
+                        <span class="small-value">4.8/5</span>
+                    </div>
+                    <div class="summary-box">
+                        <span class="small-label">SLA Compliance</span>
+                        <span class="small-value">98.2%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
