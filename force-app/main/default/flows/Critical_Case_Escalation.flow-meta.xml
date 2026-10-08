@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>60.0</apiVersion>
+    <assignments>
+        <name>Mark_Escalated</name>
+        <label>Mark Escalated</label>
+        <locationX>200</locationX>
+        <locationY>200</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Escalation_Required__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Escalated</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <description>Raises escalation and updates status when a case becomes Critical.</description>
+    <interviewLabel>Critical Case Escalation {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Critical Case Escalation</label>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Follow_Up_Task</name>
+        <label>Create Follow-Up Task</label>
+        <locationX>200</locationX>
+        <locationY>300</locationY>
+        <inputAssignments>
+            <field>Subject</field>
+            <value>
+                <stringValue>Review Critical Case Escalation</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>WhatId</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>Not Started</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Priority</field>
+            <value>
+                <stringValue>High</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Task</object>
+    </recordCreates>
+    <recordUpdates>
+        <name>Update_Escalation</name>
+        <label>Update Escalation</label>
+        <locationX>200</locationX>
+        <locationY>100</locationY>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Escalation</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Priority</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Critical</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Escalation_Required__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>Case</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+</Flow>

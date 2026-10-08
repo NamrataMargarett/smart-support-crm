@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Critical_Case_Requires_Assigned_Agent</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISPICKVAL(Priority, "Critical") &amp;&amp; ISBLANK(Assigned_Agent__c)</errorConditionFormula>
+    <errorDisplayField>Assigned_Agent__c</errorDisplayField>
+    <errorMessage>Critical cases must have an assigned agent.</errorMessage>
+</ValidationRule>
