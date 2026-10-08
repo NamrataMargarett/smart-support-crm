@@ -1,0 +1,155 @@
+# Synthetic complaint dataset for demonstration purposes only.
+# This is not real customer data.
+# Columns: case_id, description, category, priority
+
+case_id,description,category,priority
+1,"Laptop is not charging",Hardware,High
+2,"I forgot my account password",Account,Medium
+3,"I was charged twice for the same order",Billing,High
+4,"My order has not arrived",Shipping,High
+5,"I requested a refund but have not received it",Refund,High
+6,"My laptop is overheating and shutting down",Hardware,Critical
+7,"The monitor flickers after startup",Hardware,Medium
+8,"My email app keeps crashing",Software,Medium
+9,"The invoice total is wrong",Billing,High
+10,"My account was suspended without notice",Account,High
+11,"The package was delivered to the wrong address",Shipping,High
+12,"I want to cancel my subscription and refund my payment",Refund,High
+13,"The keyboard stops responding intermittently",Hardware,Medium
+14,"The software license is not activating",Software,High
+15,"My bank statement shows duplicate billing",Billing,Critical
+16,"I changed my address but account still shows old location",Account,Medium
+17,"The parcel tracking is stuck",Shipping,Medium
+18,"The refund was approved but not processed",Refund,High
+19,"The laptop battery drains very quickly",Hardware,High
+20,"The app logs me out every few minutes",Software,Medium
+21,"I received a duplicate invoice for the same month",Billing,High
+22,"I cannot access my account after password reset",Account,High
+23,"The delivery date changed without notice",Shipping,Medium
+24,"Refund request has not been credited",Refund,High
+25,"The screen is completely black",Hardware,Critical
+26,"The CRM software is slow during updates",Software,Medium
+27,"I was charged for a cancelled service",Billing,Critical
+28,"My account email was changed without approval",Account,High
+29,"The package arrived damaged",Shipping,High
+30,"I received no refund after returning the product",Refund,High
+31,"The laptop charger is not working",Hardware,High
+32,"My antivirus software is not installing",Software,Medium
+33,"I was billed twice for a subscription renewal",Billing,High
+34,"The account login keeps failing",Account,Medium
+35,"The shipment has not moved for days",Shipping,High
+36,"The refund is pending for more than two weeks",Refund,High
+37,"The laptop fan is making loud noise",Hardware,Medium
+38,"The ERP software crashes during report generation",Software,High
+39,"I was charged after cancellation",Billing,Critical
+40,"My account details are incorrect",Account,Medium
+41,"The courier delayed my package repeatedly",Shipping,Medium
+42,"My refund request was rejected without explanation",Refund,High
+43,"The hard drive is making clicking sounds",Hardware,Critical
+44,"The mobile app freezes on checkout",Software,High
+45,"The billing cycle is incorrect",Billing,Medium
+46,"My account was locked after failed login attempts",Account,High
+47,"Shipping label was not generated",Shipping,Medium
+48,"I paid for a refund and still got no refund",Refund,High
+49,"The laptop battery is swelling",Hardware,Critical
+50,"The CRM dashboard is not loading",Software,High
+51,"I was charged in a different currency",Billing,High
+52,"I need help with account verification",Account,Medium
+53,"The item was delivered late",Shipping,Medium
+54,"I want my refund status update",Refund,Medium
+55,"The laptop is overheating and shutting down",Hardware,Critical
+56,"The application crashes after login",Software,Medium
+57,"I received a duplicate charge on my credit card",Billing,High
+58,"The account profile has outdated information",Account,Medium
+59,"My order tracking link is broken",Shipping,Medium
+60,"I canceled the purchase but still got charged",Refund,Critical
+61,"The laptop screen has cracked after falling",Hardware,High
+62,"The payment gateway timed out repeatedly",Software,Medium
+63,"The invoice was sent to the wrong email",Billing,Medium
+64,"I need to update my account contact details",Account,Medium
+65,"The package was marked delivered but not received",Shipping,High
+66,"The refund never reached my wallet",Refund,High
+67,"My laptop is not powering on",Hardware,Critical
+68,"The software update failed multiple times",Software,High
+69,"I was billed twice for the same invoice",Billing,Critical
+70,"My account password reset email never arrived",Account,Medium
+71,"The shipment address was incorrect",Shipping,High
+72,"Refund processing took too long",Refund,Medium
+73,"The laptop usb port is not detecting devices",Hardware,High
+74,"The desktop software is lagging badly",Software,Medium
+75,"The invoice amount does not match the contract",Billing,High
+76,"I cannot access my account after changing email",Account,High
+77,"The shipping box arrived open",Shipping,High
+78,"I still have not received my refund",Refund,Critical
+79,"The laptop camera is not working",Hardware,Medium
+80,"The app disconnects from the server",Software,Medium
+81,"The transaction was cancelled but charged anyway",Billing,Critical
+82,"The account is missing my company details",Account,Medium
+83,"The package has not reached the warehouse",Shipping,High
+84,"The refund system shows an error",Refund,Medium
+85,"The laptop audio is distorted",Hardware,Medium
+86,"The software license key expired suddenly",Software,High
+87,"My monthly bill shows a hidden fee",Billing,High
+88,"My account has multiple duplicate records",Account,Medium
+89,"The shipping route changed without a reason",Shipping,Medium
+90,"Refund request was denied without notice",Refund,High
+91,"The charging cable is damaged",Hardware,Medium
+92,"The dashboard shows outdated software version",Software,Medium
+93,"I got billed for an upgrade I never approved",Billing,Critical
+94,"I cannot update my account phone number",Account,Medium
+95,"The shipment is delayed at customs",Shipping,High
+96,"The refund never processed even after approval",Refund,Critical
+97,"The laptop speaker is silent",Hardware,Medium
+98,"The software module is not syncing",Software,Medium
+99,"The invoice date is incorrect",Billing,Medium
+100,"The account contact and billing contact are mismatched",Account,High
+101,"The package was lost in transit",Shipping,Critical
+102,"I returned the product but refund is still pending",Refund,Critical
+103,"The laptop hinges are loose",Hardware,Medium
+104,"The app cannot save my work",Software,High
+105,"I was charged for a free trial",Billing,High
+106,"My account is not recognized by the system",Account,Medium
+107,"The shipping update is inaccurate",Shipping,Medium
+108,"The refund request status shows error",Refund,High
+109,"The laptop keyboard backlight is not working",Hardware,Medium
+110,"The downloaded software file is corrupted",Software,Medium
+111,"I paid an extra fee that was not disclosed",Billing,High
+112,"My account history is not visible",Account,Medium
+113,"The parcel was delivered to the wrong customer",Shipping,Critical
+114,"Refund was sent to the wrong account",Refund,Critical
+115,"The laptop trackpad is unresponsive",Hardware,High
+116,"The software installation stops midway",Software,High
+117,"The invoice includes an old balance",Billing,Medium
+118,"My account security question is not working",Account,Medium
+119,"The package was delayed by weather",Shipping,Medium
+120,"My refund is stuck in pending review",Refund,High
+121,"The laptop is overheating and the battery is swelling",Hardware,Critical
+122,"The software version is incompatible with my device",Software,High
+123,"I paid for a duplicate annual plan",Billing,Critical
+124,"My account email verification failed",Account,High
+125,"The package was sent to the wrong warehouse",Shipping,High
+126,"I requested a refund and it is still pending",Refund,High
+127,"The laptop display flickers during use",Hardware,High
+128,"The software login page is broken",Software,Medium
+129,"I was charged for a plan I never activated",Billing,High
+130,"My account password reset link expired",Account,Medium
+131,"The parcel was never picked up",Shipping,High
+132,"I have not received my refund after returning the item",Refund,Critical
+133,"The laptop touchpad is not responding",Hardware,High
+134,"The software module is missing after update",Software,Medium
+135,"The bill contains a duplicate late fee",Billing,High
+136,"The account contact record was deleted mistakenly",Account,High
+137,"The package was delayed at the last mile",Shipping,Medium
+138,"The refund request is taking too long",Refund,Medium
+139,"The laptop battery is not charging",Hardware,Critical
+140,"The software is not compatible with Windows 11",Software,High
+141,"I was charged for a service I never used",Billing,Critical
+142,"The account is missing my order history",Account,Medium
+143,"The shipment label is damaged",Shipping,Medium
+144,"I requested a refund but the amount is wrong",Refund,High
+145,"The laptop is extremely slow",Hardware,Medium
+146,"The software update breaks the app",Software,High
+147,"My monthly invoice is incorrect",Billing,Medium
+148,"I need to report suspicious activity in my account",Account,High
+149,"The package tracking is not updating",Shipping,Medium
+150,"The refund approval message never arrived",Refund,High

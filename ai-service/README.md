@@ -1,12 +1,3 @@
-# AI Service
-
-This folder contains the Python AI/ML service for complaint classification and priority prediction.
-It is designed as a demo/prototype service for a college project.
-
-## Planned contents
-- FastAPI app
-- Synthetic complaint dataset
-- Preprocessing utilities
-- Model training scripts
-- Prediction service
-- Evaluation results
+# SmartSupport AI Service
+# This is a demonstration-only AI service for a college project.
+# It is not a production-grade model and uses synthetic data.
