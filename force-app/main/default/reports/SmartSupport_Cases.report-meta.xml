@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <aggregates>
+        <calculatedFormula>RowCount</calculatedFormula>
+        <datatype>number</datatype>
+        <developerName>RowCount</developerName>
+        <isActive>true</isActive>
+        <isCrossFilter>false</isCrossFilter>
+        <label>Total Cases</label>
+    </aggregates>
+    <columns>
+        <field>CASE_NUMBER</field>
+    </columns>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>CREATED_DATE</field>
+        <label>Created Date</label>
+    </groupingsDown>
+    <name>Cases by Category</name>
+    <reportType>CaseList</reportType>
+    <showDetails>true</showDetails>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+</Report>
