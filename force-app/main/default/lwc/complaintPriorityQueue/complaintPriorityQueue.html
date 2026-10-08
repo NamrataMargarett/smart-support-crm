@@ -1,0 +1,114 @@
+<template>
+    <div class="queue-wrapper">
+        <div class="header-section">
+            <h1>Complaint Priority Queue</h1>
+            <p>Real-time complaint triage and priority management</p>
+        </div>
+
+        <template if:true={isLoading}>
+            <div class="loading-section">
+                <p>Loading complaint data...</p>
+            </div>
+        </template>
+
+        <template if:true={error}>
+            <div class="error-section">
+                <p>{error}</p>
+            </div>
+        </template>
+
+        <template if:false={isLoading}>
+            <!-- Priority Metrics Row -->
+            <div class="metrics-grid">
+                <div class="metric-card primary">
+                    <span class="metric-label">Total Complaints</span>
+                    <span class="metric-value">{metrics.totalCases}</span>
+                    <span class="metric-trend">All active complaints</span>
+                </div>
+
+                <div class="metric-card danger">
+                    <span class="metric-label">High Priority</span>
+                    <span class="metric-value">{metrics.highPriority}</span>
+                    <span class="metric-trend">{highPriorityPercent}% of total</span>
+                </div>
+
+                <div class="metric-card warning">
+                    <span class="metric-label">Medium Priority</span>
+                    <span class="metric-value">{metrics.mediumPriority}</span>
+                    <span class="metric-trend">{mediumPriorityPercent}% of total</span>
+                </div>
+
+                <div class="metric-card success">
+                    <span class="metric-label">Low Priority</span>
+                    <span class="metric-value">{metrics.lowPriority}</span>
+                    <span class="metric-trend">{lowPriorityPercent}% of total</span>
+                </div>
+
+                <div class="metric-card info">
+                    <span class="metric-label">Open Cases</span>
+                    <span class="metric-value">{metrics.openCases}</span>
+                    <span class="metric-trend">Needs action</span>
+                </div>
+
+                <div class="metric-card resolved">
+                    <span class="metric-label">Closed Cases</span>
+                    <span class="metric-value">{metrics.closedCases}</span>
+                    <span class="metric-trend">Resolved</span>
+                </div>
+            </div>
+
+            <!-- Category Distribution -->
+            <div class="card-panel">
+                <div class="panel-header">
+                    <span class="panel-title">Complaint Distribution by Category</span>
+                    <span class="filter-badge">Live data</span>
+                </div>
+
+                <div class="category-bars">
+                    <template for:each={categoryData} for:item="cat">
+                        <div key={cat.category} class="bar-item">
+                            <span class="category-name">{cat.category}</span>
+                            <div class="bar-container">
+                                <div class="bar" style="width: {cat.count}%"></div>
+                            </div>
+                            <span class="bar-count">{cat.count}</span>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <!-- Complaint Queue Table -->
+            <div class="card-panel">
+                <div class="panel-header">
+                    <span class="panel-title">Priority Queue (Highest First)</span>
+                    <span class="filter-badge">Ordered by priority</span>
+                </div>
+
+                <table class="complaint-table">
+                    <thead>
+                        <tr>
+                            <th>Case #</th>
+                            <th>Subject</th>
+                            <th>Priority</th>
+                            <th>Status</th>
+                            <th>Type</th>
+                            <th>Created</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={complaints} for:item="complaint">
+                            <tr key={complaint.Id} class="priority-{complaint.Priority}">
+                                <td class="case-number">{complaint.CaseNumber}</td>
+                                <td class="subject">{complaint.Subject}</td>
+                                <td class="priority-cell {complaint.Priority}">{complaint.Priority}</td>
+                                <td class="status">{complaint.Status}</td>
+                                <td class="type">{complaint.Type}</td>
+                                <td class="date">{complaint.createdDateFormatted}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </template>
+    </div>
+</template>

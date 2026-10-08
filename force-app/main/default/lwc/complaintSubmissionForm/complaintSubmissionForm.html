@@ -1,0 +1,76 @@
+<template>
+    <div class="form-wrapper">
+        <h2>Submit a Complaint</h2>
+        <p>Fill out the form below to submit your complaint. Priority will be automatically assigned.</p>
+
+        <template if:true={showForm}>
+            <form onsubmit={handleSubmit}>
+                <div class="form-group">
+                    <label for="account-name">Your Name *</label>
+                    <input
+                        id="account-name"
+                        type="text"
+                        name="AccountName"
+                        placeholder="Enter your name"
+                        required
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input id="email" type="email" name="Email" placeholder="Enter email" required />
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="category">Category *</label>
+                        <select id="category" name="Category" required>
+                            <option value="">Select a category</option>
+                            <template for:each={categories} for:item="cat">
+                                <option key={cat.value} value={cat.value}>{cat.label}</option>
+                            </template>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="severity">Severity</label>
+                        <select id="severity" name="Severity">
+                            <template for:each={severities} for:item="sev">
+                                <option key={sev.value} value={sev.value}>{sev.label}</option>
+                            </template>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description *</label>
+                    <textarea
+                        id="description"
+                        name="Description"
+                        placeholder="Describe your complaint in detail"
+                        rows="5"
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" disabled={isSubmitting} class="submit-btn">
+                        <template if:true={isSubmitting}>
+                            <span>Submitting...</span>
+                        </template>
+                        <template if:false={isSubmitting}>
+                            <span>Submit Complaint</span>
+                        </template>
+                    </button>
+                </div>
+            </form>
+        </template>
+
+        <template if:false={showForm}>
+            <div class="success-message">
+                <p>✓ Your complaint has been received and prioritized.</p>
+                <p>Our team will contact you shortly.</p>
+            </div>
+        </template>
+    </div>
+</template>
