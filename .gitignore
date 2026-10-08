@@ -1,0 +1,51 @@
+# Salesforce DX
+.sfdx/
+.sf/
+
+# Node / JS
+node_modules/
+package-lock.json
+
+# VS Code
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+venv/
+ENV/
+env/
+
+# ML / model artifacts
+ai-service/model/
+ai-service/*.pkl
+ai-service/*.joblib
+ai-service/*.h5
+ai-service/*.model
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment
+.env
+.env.*
+
+# Salesforce metadata
+.forceignore
+*.log
+
+# Build artifacts
+dist/
+build/
+coverage/
