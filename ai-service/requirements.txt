@@ -1,6 +1,12 @@
-fastapi==0.115.0
-uvicorn==0.30.6
-pandas==2.2.5
-numpy==2.2.0
-scikit-learn==1.5.2
-joblib==1.4.2
+# SmartSupport AI Service - Requirements
+# These dependencies are needed for the Python AI service
+# Install with: pip install -r requirements.txt
+
+fastapi==0.115.0          # Web framework for AI API
+uvicorn==0.30.6           # ASGI server to run FastAPI
+pydantic==2.5.0           # Data validation
+pandas==2.2.5             # Data processing
+numpy==2.2.0              # Numerical computing
+scikit-learn==1.5.2       # Machine learning
+joblib==1.4.2             # Model serialization
+python-dotenv==1.0.0      # Environment variables
