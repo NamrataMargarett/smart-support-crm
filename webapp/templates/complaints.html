@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaint Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="form-wrapper">
+        <div class="form-card">
+            <h1>Complaint Registration</h1>
+            <p class="small-text">Submit a complaint and prioritize it automatically.</p>
+
+            {% if error %}
+                <div class="error-box">{{ error }}</div>
+            {% endif %}
+
+            <form method="POST" action="{{ url_for('complaints') }}">
+                <div class="form-row">
+                    <div>
+                        <label>Customer Name</label>
+                        <input type="text" name="customer_name" placeholder="Customer name" required>
+                    </div>
+                    <div>
+                        <label>Email</label>
+                        <input type="email" name="email" placeholder="Email" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div>
+                        <label>Category</label>
+                        <select name="category" required>
+                            <option value="">Select</option>
+                            <option>Billing</option>
+                            <option>Shipping</option>
+                            <option>Hardware</option>
+                            <option>Software</option>
+                            <option>Account</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Customer Type</label>
+                        <select name="customer_type">
+                            <option>Standard</option>
+                            <option>Premium</option>
+                            <option>Enterprise</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div>
+                        <label>Severity</label>
+                        <select name="severity">
+                            <option>Low</option>
+                            <option selected>Medium</option>
+                            <option>High</option>
+                            <option>Critical</option>
+                        </select>
+                    </div>
+                </div>
+
+                <label>Description</label>
+                <textarea name="description" rows="5" placeholder="Describe the issue" required></textarea>
+
+                <div class="button-group">
+                    <button type="submit">Save Complaint</button>
+                    <a href="{{ url_for('dashboard') }}" class="secondary-btn">Back to Dashboard</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

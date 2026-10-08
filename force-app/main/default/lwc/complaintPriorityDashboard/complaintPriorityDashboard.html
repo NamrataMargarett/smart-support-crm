@@ -1,0 +1,38 @@
+<template>
+    <div class="dashboard-wrapper">
+        <div class="dashboard-header">
+            <h2>Complaint Priority Dashboard</h2>
+        </div>
+
+        <div class="metrics-grid">
+            <div class="metric-card primary">
+                <span class="label">Total Complaints</span>
+                <span class="value">{metrics.totalCases}</span>
+            </div>
+            <div class="metric-card danger">
+                <span class="label">High Priority</span>
+                <span class="value">{metrics.highPriority}</span>
+            </div>
+            <div class="metric-card warning">
+                <span class="label">Medium Priority</span>
+                <span class="value">{metrics.mediumPriority}</span>
+            </div>
+            <div class="metric-card success">
+                <span class="label">Low Priority</span>
+                <span class="value">{metrics.lowPriority}</span>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-header">
+                <h3>Priority Queue</h3>
+            </div>
+            <ul>
+                <li>Urgent billing and outage issues</li>
+                <li>Service interruptions and failed payments</li>
+                <li>Shipping and account access issues</li>
+                <li>Routine software and hardware requests</li>
+            </ul>
+        </div>
+    </div>
+</template>

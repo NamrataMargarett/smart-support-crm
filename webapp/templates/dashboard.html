@@ -13,60 +13,85 @@
                 <h1>SmartSupport CRM</h1>
                 <p>Welcome, {{ username }}</p>
             </div>
-            <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+            <div class="top-actions">
+                <a href="{{ url_for('complaints') }}" class="primary-btn">+ Add Complaint</a>
+                <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+            </div>
         </header>
 
         <div class="dashboard-grid">
             <div class="metric-card primary">
-                <span class="metric-label">Total Cases</span>
+                <span class="metric-label">Total Complaints</span>
                 <span class="metric-value">{{ metrics.total_cases }}</span>
-                <span class="metric-trend positive">+12.5% vs last month</span>
-            </div>
-
-            <div class="metric-card success">
-                <span class="metric-label">Resolved</span>
-                <span class="metric-value">{{ metrics.resolved }}</span>
-                <span class="metric-trend positive">+9.2% uplift</span>
-            </div>
-
-            <div class="metric-card warning">
-                <span class="metric-label">Open Cases</span>
-                <span class="metric-value">{{ metrics.open_cases }}</span>
-                <span class="metric-trend negative">-4.1% this week</span>
+                <span class="metric-trend positive">Live from database</span>
             </div>
 
             <div class="metric-card danger">
-                <span class="metric-label">Critical</span>
-                <span class="metric-value">{{ metrics.critical }}</span>
-                <span class="metric-trend negative">Needs escalation</span>
+                <span class="metric-label">High Priority</span>
+                <span class="metric-value">{{ metrics.high_priority }}</span>
+                <span class="metric-trend negative">Needs action</span>
             </div>
 
-            <div class="metric-card info">
-                <span class="metric-label">Escalated</span>
-                <span class="metric-value">{{ metrics.escalated }}</span>
-                <span class="metric-trend positive">Active routing</span>
+            <div class="metric-card warning">
+                <span class="metric-label">Medium Priority</span>
+                <span class="metric-value">{{ metrics.medium_priority }}</span>
+                <span class="metric-trend negative">Monitor closely</span>
             </div>
 
-            <div class="metric-card purple">
-                <span class="metric-label">Closed</span>
-                <span class="metric-value">{{ metrics.closed }}</span>
-                <span class="metric-trend positive">+5.3% completion</span>
+            <div class="metric-card success">
+                <span class="metric-label">Low Priority</span>
+                <span class="metric-value">{{ metrics.low_priority }}</span>
+                <span class="metric-trend positive">Routine follow-up</span>
             </div>
         </div>
 
         <div class="chart-card">
             <div class="panel-header">
-                <h3>Case Distribution</h3>
-                <span class="filter-tag">This Month</span>
+                <h3>Complaint Distribution by Category</h3>
+                <span class="filter-tag">Priority-based queue</span>
             </div>
 
             <div class="bar-chart">
-                <div class="bar" style="height: 65%;"><span class="bar-label">Hardware</span></div>
-                <div class="bar" style="height: 80%;"><span class="bar-label">Software</span></div>
-                <div class="bar" style="height: 55%;"><span class="bar-label">Billing</span></div>
-                <div class="bar" style="height: 90%;"><span class="bar-label">Shipping</span></div>
-                <div class="bar" style="height: 70%;"><span class="bar-label">Account</span></div>
+                {% if metrics.category_data %}
+                    {% for row in metrics.category_data %}
+                        <div class="bar" style="height: {{ (row.count * 30) + 20 }}px;">
+                            <span class="bar-label">{{ row.category }}</span>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="bar empty-bar" style="height: 30px;"><span class="bar-label">No data</span></div>
+                {% endif %}
             </div>
+        </div>
+
+        <div class="table-card">
+            <div class="panel-header">
+                <h3>Recent Complaints</h3>
+                <span class="filter-tag">Ordered by latest</span>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Category</th>
+                        <th>Priority</th>
+                        <th>Severity</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in complaints %}
+                        <tr>
+                            <td>{{ item.customer_name }}</td>
+                            <td>{{ item.category }}</td>
+                            <td class="priority {{ item.priority.lower() }}">{{ item.priority }}</td>
+                            <td>{{ item.severity }}</td>
+                            <td>{{ item.description[:80] }}{% if item.description|length > 80 %}...{% endif %}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 </body>
